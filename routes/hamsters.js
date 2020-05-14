@@ -76,9 +76,9 @@ router.put('/:id/result', async (req, res) => {
             hamsterId = hamster.id
             // make a object with wins, defeats, games.
             results = {
-                wins: hamsterData.wins += req.body.wins,
-                defeats: hamsterData.defeats += req.body.defeats,
-                games: hamsterData.games + 1
+                wins: hamsterData.wins + req.body.wins,
+                defeats: hamsterData.defeats + req.body.defeats,
+                games: hamsterData.games + req.body.games
             }
 
             await db.collection('hamsters').doc(hamsterId).update(results)

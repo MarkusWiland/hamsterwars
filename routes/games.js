@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
 
     try {
         // get the right date for posting.
-        let date = new Date().toISOString()
+        let date = new Date().toDateString();
         // post in new object with, id, timeStamp, contestants, winner
         await db.collection('games').doc().set({
             id: req.body.id,
