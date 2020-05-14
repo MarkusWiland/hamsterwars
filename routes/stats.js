@@ -12,12 +12,14 @@ router.get('/total', async (req, res) => {
 
         // the number of games is in total obj under _size.
         const totalGames = total.size
-        res.status(200).send({ msg: `Total numbers of games is ${totalGames}` })
+        res.status(200).send({ msg: `totalGames: ${totalGames}` })
     } catch (err) {
         console.error(err)
         res.status(500).send(err)
     }
 })
+
+
 
 
 module.exports = router;

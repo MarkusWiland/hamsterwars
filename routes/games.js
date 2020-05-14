@@ -7,7 +7,10 @@ const router = new Router();
 router.get('/', async (req, res) => {
 
     try {
+        // create empty array
         const dbArray = []
+
+        // get all from collection games
         const getDB = await db.collection('games').get()
         getDB.forEach(game => {
             dbArray.push(game.data())
@@ -26,9 +29,12 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
 
     try {
+        // get the right date for posting.
+        let date = new Date().toISOString()
+        // post in new object with, id, timeStamp, contestants, winner
         await db.collection('games').doc().set({
             id: req.body.id,
-            timeStamp: new Date(),
+            timeStamp: date,
             contestants: req.body.contestants,
             winner: req.body.winner
         })
@@ -36,6 +42,7 @@ router.post('/', async (req, res) => {
 
     } catch (err) {
         console.error(err)
+
         res.status(500).send(err)
     }
 

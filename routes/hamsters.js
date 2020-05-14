@@ -32,7 +32,7 @@ router.get('/random', async (req, res) => {
             array.push(doc.data())
         })
         let random = Math.floor(Math.random() * array.length)
-        console.log(array[random])
+
         res.status(200).send(array[random])
     } catch (err) {
         res.status(500)
