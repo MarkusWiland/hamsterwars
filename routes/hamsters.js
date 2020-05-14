@@ -6,11 +6,13 @@ const router = new Router();
 router.get('/', async (req, res) => {
 
     try {
+        // create empty array
         const array = []
-
+        // go into collection hamsters and grab all into it.
         const snapShot = await db.collection('hamsters').get();
-
+        // looping through the callback from snapShot.
         snapShot.forEach(doc => {
+            // push data into array.
             array.push(doc.data())
         })
 
@@ -24,11 +26,13 @@ router.get('/', async (req, res) => {
 router.get('/random', async (req, res) => {
 
     try {
+        // create empty array
         const array = []
-
+        // go into collection hamsters and grab all into it.
         const snapShot = await db.collection('hamsters').get();
-
+        // looping through the callback from snapShot.
         snapShot.forEach(doc => {
+            // push data into array.
             array.push(doc.data())
         })
         let random = Math.floor(Math.random() * array.length)
@@ -66,8 +70,11 @@ router.put('/:id/result', async (req, res) => {
             .where("id", "==", parseInt(req.params.id)).get();
 
         hamster.forEach(async hamster => {
+            // getting data from ind. hamsters.
             let hamsterData = hamster.data()
+            // getting hamster id
             hamsterId = hamster.id
+            // make a object with wins, defeats, games.
             results = {
                 wins: hamsterData.wins += req.body.wins,
                 defeats: hamsterData.defeats += req.body.defeats,
